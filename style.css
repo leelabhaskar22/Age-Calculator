@@ -1,0 +1,17 @@
+*{
+    
+
+}
+.base{
+    margin: 8%;
+
+    background-color: rgb(255, 255, 255);
+}
+
+span{
+    color: #ff0909;
+}
+
+input:required {
+    border-color: red;
+  }
