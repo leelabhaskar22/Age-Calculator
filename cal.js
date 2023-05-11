@@ -6,8 +6,7 @@ console.log(currentYear);
 const currentDate = new Date();
 const currentMonth = currentDate1.getMonth(String);
 const todaydate=currentDate.getDate();
-console.log(currentMonth);
-//Days in month
+//NO of Days in month(30 or 31)
 const getDays = (year, month) => {
   return new Date(year, month, 0).getDate();
 };
@@ -22,7 +21,6 @@ for (let year = startYear; year <= endYear; year++) {
 }
 return leapYears;
 }
-console.log(currentMonth)
 //main calculation
 function calculate() {
 var year = document.getElementById("year").value;
@@ -30,34 +28,32 @@ var monthh = document.getElementById("month").value;
 var date = document.getElementById("date").value; 
 const leapYears = LeapYears(year,currentYear);
 leapcount = leapYears.length;
-var date2 = getDays(year,monthh) - date + 1;
-console.log(date2)
-    var age = (currentYear - year) -1;
-    //console.log(age); 
+    var age = (currentYear - year) - 1;
     const month1 = (12 - monthh) ;
     const month = ((12 * age) + currentMonth) + month1;
-    //console.log(month + 1)
-    const date1 = getDays(currentYear,(currentMonth+1) );
-    //console.log(date1)
-    const day=((month-age)*30) + (age*28) + (age * 7) + leapcount + date1 - date2  ;
-    //console.log(day)
+    const day1 = ((18-leapcount)*365)+(366*leapcount)
+    birthyear_days=0;
+    currentyear_days=0;
+    //calc Days in birthyear
+    for(i=monthh;i<=12;i++){
+        birthyear_days=getDays(year,i) + birthyear_days
+    }
+    birthyear_days=birthyear_days-date
+    //calc Days in currentyear
+    for(i=1;i<=currentMonth;i++){
+        currentyear_days=getDays(currentYear,i) + currentyear_days
+    }
+    day=currentyear_days+birthyear_days + todaydate -1 + day1;
     const hours = (day * 24);
-    //console.log(hours)
     const min = (hours * 60);
-    //console.log(min)
     const second =(min * 60);
-    //console.log(second)
     tolmon=month ;
-
-    document.getElementById("yearr").innerHTML = age;
-    document.getElementById("mon").innerHTML = tolmon;
-    document.getElementById("dayy").innerHTML = day;
-    document.getElementById("hour").innerHTML = hours;
-    document.getElementById("mini").innerHTML = min;
-    document.getElementById("sec").innerHTML = second;
-    
-   /* const width = document.getElementById("width").value;
-    const area = length * width;
-    document.getElementById("result").innerHTML = `The area of the rectangle is ${area} square units.`;*/
+    document.getElementById("text").innerHTML = "<span style=font-size:20px ;    display: inline-block; width: 100px;text-align: right;   padding-right: 5%;>Your age in </span>";
+    document.getElementById("yearr").innerHTML = `<span style="color: #db3434;">Years</span>  ${age}`;
+    document.getElementById("mon").innerHTML = `<span style="color: #db3434;">Months</span> :  ${tolmon}`
+    document.getElementById("dayy").innerHTML = `<span style="color: #db3434;">Days</span> :   ${day}`;
+    document.getElementById("hour").innerHTML = `<span style="color: #db3434;">Hours</span> :${hours}`;
+    document.getElementById("mini").innerHTML = `<span style="color: #db3434;">Minutes</span> :${min} `
+    document.getElementById("sec").innerHTML = `<span style="color: #db3434;">Seconds</span> ${second}`;
   }
-  
+    
