@@ -1,5 +1,4 @@
-const currentDate1 = new Date();
-console.log(currentDate1);
+
 const currentDate2 = new Date();
 const currentYear = currentDate2.getFullYear();
 console.log(currentYear);
